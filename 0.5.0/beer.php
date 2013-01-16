@@ -1,13 +1,9 @@
 <?php 
-$beer = $_POST[beer];
-$abv = $_POST[abvc];
-$size = $_POST[size];
-$cost = $_POST[cost];
 unset($_POST[submit]);
-$abv = $abv/100;
-$alcoz = $abv*$size;
-$beernum = $alcoz / $cost;
-if ($abv = 0 || $size = 0 || $cost = 0) {
+$abv = $_POST[abvc]/100;
+$alcoz = $abv*$_POST[size];
+$beernum = $alcoz / $_POST[cost];
+if ($_POST[abvc] = 0 || $_POST[size] = 0 || $_POST[cost] = 0) {
 	die();
 	} else {
 ?>

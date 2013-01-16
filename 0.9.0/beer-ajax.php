@@ -1,28 +1,28 @@
-<?php
-session_start(); //start a session
-header("Content-type: text/plain");
-unset($_GET[submit]);
-$beer['name'] = $_GET[beer];
-$beer['abvc'] = $_GET[abvc];
-$beer['size'] = $_GET[size];
-$beer['cost'] = $_GET[cost];
-print_r($beer);
-?>
-<?php //if (empty($_POST)) { ?>
-	
-<!--
-	<div id="results" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	
-		<div class="modal-header">
-			<h3>Oops!</h3>
-		</div>
-		<div class="modal-body">
-			<p>Please fill in the form. If the buttons aren't working, manually type the values into the text boxes below. Click outside this window to close.</p>
-		</div>
-		<div class="modal-footer">
-			    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		</div>
-	</div>
--->
-<?php
-//} ?>
+<?php //if (isset($_POST[submit]){unset($_POST[submit]);}
+
+if (isset($_POST)) {
+	$abv = $_POST[abvc]/100;
+	$alcoz = $abv*$_POST[size];
+	$beernum = $alcoz / $_POST[cost];
+} ?>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="myModalLabel">Results:</h3>
+  </div>
+  <div class="modal-body">
+    <?	
+    if (empty($beer)) {
+		
+		echo $beer; print_r("<p>Your beer has a beer value of " . round(100*$beernum,2) . "</p>");
+		
+	} elseif (!empty($beer)) {
+		
+	print_r("<p>" . $beer . " at $" . $cost . " has a beer value of " . round(100*$beernum,2) . "</p>");
+		
+	}?>
+		
+	<div class="alert alert-info"><a href="about-beer.php#this-number">What does this number mean?</a></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
